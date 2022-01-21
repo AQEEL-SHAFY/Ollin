@@ -22,8 +22,14 @@ class AssistMe extends StatelessWidget {
                   'Back',
                   style: TextStyle(fontSize: 24.0),
                 ),
-                style: ElevatedButton.styleFrom(
-                    primary: Color.fromRGBO(155, 154, 147, 1)),
+                style: ButtonStyle(
+                  backgroundColor:
+                      MaterialStateProperty.all<Color>(Color(0xFF9B9A93)),
+                  shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                      RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(50.0),
+                  )),
+                ),
                 onPressed: () {
                   Navigator.pop(context);
                 },
