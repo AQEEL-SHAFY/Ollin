@@ -1,13 +1,12 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
-import 'package:ollin/AssistMe.dart';
-import 'package:ollin/EmergencyContact.dart';
-import 'package:ollin/FindLocation.dart';
+import 'package:ollin/assist_me.dart';
+import 'package:ollin/emergency_contact.dart';
+import 'package:ollin/find_location.dart';
 
 void main() {
   runApp(const MaterialApp(
-    title: 'Navigation Basics',
     home: MyApp(),
   ));
 }
@@ -32,38 +31,47 @@ class MyApp extends StatelessWidget {
             Container(
               height: 111,
               width: 448,
-             
-              margin: EdgeInsets.all(25),
+              margin: EdgeInsets.only(top: 25.0, left: 30.0, right: 30.0, bottom: 25.0),
               child: ElevatedButton(
                 child: Text(
                   'Assist Me',
                   style: TextStyle(fontSize: 24.0),
                 ),
-                style: ElevatedButton.styleFrom(
-                    primary: Color.fromRGBO(1, 66, 104, 1)),
+                style: ButtonStyle(
+                  backgroundColor:
+                      MaterialStateProperty.all<Color>(Color(0xFF014268)),
+                  shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                      RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(25.0),
+                  )),
+                ),
                 onPressed: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(
-                        builder: (context) => const AssistMe()),
+                    MaterialPageRoute(builder: (context) => const AssistMe()),
                   );
                 },
               ),
             ),
-             Container(
+            Container(
               height: 111,
               width: 448,
-              
-              margin: EdgeInsets.all(25),
+              margin: EdgeInsets.only(top: 25.0, left: 30.0, right: 30.0, bottom: 25.0),
               child: ElevatedButton(
                 child: Text(
                   'Find My Location',
                   style: TextStyle(fontSize: 24.0),
                 ),
-                style: ElevatedButton.styleFrom(
-                    primary: Color.fromRGBO(156, 134, 111, 1)),
+                style: ButtonStyle(
+                  backgroundColor:
+                      MaterialStateProperty.all<Color>(Color(0xFF9C866F)),
+                  shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                      RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(25.0),
+                  )),
+                ),
                 onPressed: () {
-                   Navigator.push(
+                  Navigator.push(
                     context,
                     MaterialPageRoute(
                         builder: (context) => const FindLocation()),
@@ -71,18 +79,23 @@ class MyApp extends StatelessWidget {
                 },
               ),
             ),
-             Container(
+            Container(
               height: 111,
               width: 448,
-              
-              margin: EdgeInsets.all(25),
+              margin: EdgeInsets.only(top: 25.0, left: 30.0, right: 30.0, bottom: 25.0),
               child: ElevatedButton(
                 child: Text(
                   'Emergency Contact',
                   style: TextStyle(fontSize: 24.0),
                 ),
-                style: ElevatedButton.styleFrom(
-                    primary: Color.fromRGBO(231, 48, 28, 1)),
+                style: ButtonStyle(
+                  backgroundColor:
+                      MaterialStateProperty.all<Color>(Color(0xFFE7301C)),
+                  shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                      RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(25.0),
+                  )),
+                ),
                 onPressed: () {
                   Navigator.push(
                     context,
@@ -98,5 +111,3 @@ class MyApp extends StatelessWidget {
     );
   }
 }
-
-
