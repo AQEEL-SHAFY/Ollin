@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:ollin/assist_me.dart';
 import 'package:ollin/emergency_contact.dart';
 import 'package:ollin/find_location.dart';
-
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 void main() {
   runApp(const MaterialApp(
     home: MyApp(),
