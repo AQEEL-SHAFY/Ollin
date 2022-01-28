@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, deprecated_member_use, avoid_unnecessary_containers, sized_box_for_whitespace
 
 import 'package:flutter/material.dart';
+import 'package:ollin/add_contact.dart';
 
 class EmergencyContact extends StatelessWidget {
   const EmergencyContact({Key? key}) : super(key: key);
@@ -182,7 +183,12 @@ class EmergencyContact extends StatelessWidget {
                     borderRadius: BorderRadius.circular(25.0),
                   )),
                 ),
-                onPressed: () {},
+                onPressed: () {
+                   Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const AddContact()),
+                );
+                },
               ),
             ),
             Container(

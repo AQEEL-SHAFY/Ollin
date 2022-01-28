@@ -63,6 +63,8 @@ flutter:
   assets:
       - images/ollin_transparent.png
       - images/alarm-warning-line.png
+      - images/save.png
+      
   #   - images/a_dot_burr.jpeg
   #   - images/a_dot_ham.jpeg
 
