@@ -22,11 +22,11 @@ class EmergencyContact extends StatelessWidget {
             ),
             Center(
               child: Container(
-                 margin: EdgeInsets.only(
-                          top: 0.0, left: 15.0, right: 15.0, bottom: 5.0),
+                margin: EdgeInsets.only(
+                    top: 0.0, left: 15.0, right: 15.0, bottom: 5.0),
                 child: Card(
                   child: Wrap(children: <Widget>[
-                    Padding(padding: EdgeInsets.only(top: 0,left: 10)),
+                    Padding(padding: EdgeInsets.only(top: 0, left: 10)),
                     Text(
                       "FATHER               ",
                       style: TextStyle(fontSize: 22.0, letterSpacing: 2.0),
@@ -67,15 +67,14 @@ class EmergencyContact extends StatelessWidget {
                   ]),
                 ),
               ),
-              
             ),
             Center(
               child: Container(
-                 margin: EdgeInsets.only(
-                          top: 0.0, left: 15.0, right: 15.0, bottom: 5.0),
+                margin: EdgeInsets.only(
+                    top: 0.0, left: 15.0, right: 15.0, bottom: 5.0),
                 child: Card(
                   child: Wrap(children: <Widget>[
-                    Padding(padding: EdgeInsets.only(top: 0,left: 10)),
+                    Padding(padding: EdgeInsets.only(top: 0, left: 10)),
                     Text(
                       "HOSPITAL                        ",
                       style: TextStyle(fontSize: 22.0, letterSpacing: 2.0),
@@ -116,15 +115,14 @@ class EmergencyContact extends StatelessWidget {
                   ]),
                 ),
               ),
-              
             ),
             Center(
               child: Container(
-                 margin: EdgeInsets.only(
-                          top: 0.0, left: 15.0, right: 15.0, bottom: 0.0),
+                margin: EdgeInsets.only(
+                    top: 0.0, left: 15.0, right: 15.0, bottom: 0.0),
                 child: Card(
                   child: Wrap(children: <Widget>[
-                    Padding(padding: EdgeInsets.only(top: 0,left: 10)),
+                    Padding(padding: EdgeInsets.only(top: 0, left: 10)),
                     Text(
                       "POLICE                              ",
                       style: TextStyle(fontSize: 22.0, letterSpacing: 2.0),
@@ -165,77 +163,72 @@ class EmergencyContact extends StatelessWidget {
                   ]),
                 ),
               ),
-              
             ),
-              Container(
-              margin: EdgeInsets.only(
-                top: 10.0, left: 20.0, right: 20.0, bottom: 10.0),
-            height: 64,
-            width: 370,
-            child: ElevatedButton(
-              child: Text(
-                'Add Emergency Contact',
-                style: TextStyle(fontSize: 24.0),
-              ),
-             style: ButtonStyle(
-                backgroundColor:
-                    MaterialStateProperty.all<Color>(Color(0xFF014268)),
-                shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                    RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(25.0),
-                )),
-              ),
-              onPressed: () {
-               
-              },
-            ),
-          ),
             Container(
-           margin: EdgeInsets.only(
-                top: 0.0, left: 20.0, right: 20.0, bottom: 10.0),
-            height: 64,
-            width: 370,
-            child: ElevatedButton(
-              child: Text(
-                'Remove Emergency Contact',
-                style: TextStyle(fontSize: 24.0),
+              margin: EdgeInsets.only(
+                  top: 10.0, left: 20.0, right: 20.0, bottom: 10.0),
+              height: 64,
+              width: 370,
+              child: ElevatedButton(
+                child: Text(
+                  'Add Emergency Contact',
+                  style: TextStyle(fontSize: 24.0),
+                ),
+                style: ButtonStyle(
+                  backgroundColor:
+                      MaterialStateProperty.all<Color>(Color(0xFF014268)),
+                  shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                      RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(25.0),
+                  )),
+                ),
+                onPressed: () {},
               ),
-              style: ButtonStyle(
-                backgroundColor:
-                    MaterialStateProperty.all<Color>(Color(0xFFE7301C)),
-                shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                    RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(25.0),
-                )),
-              ),
-              onPressed: () {
-            
-              },
             ),
-          ),
-             Container(
-            margin: EdgeInsets.only(
-                top: 5.0, left: 30.0, right: 30.0, bottom: .0),
-            height: 60,
-            width: 194,
-            child: ElevatedButton(
-              child: Text(
-                'Back',
-                style: TextStyle(fontSize: 24.0),
+            Container(
+              margin: EdgeInsets.only(
+                  top: 0.0, left: 20.0, right: 20.0, bottom: 10.0),
+              height: 64,
+              width: 370,
+              child: ElevatedButton(
+                child: Text(
+                  'Remove Emergency Contact',
+                  style: TextStyle(fontSize: 24.0, color: Color(0xFFE7301C)),
+                ),
+                style: ButtonStyle(
+                    backgroundColor:
+                        MaterialStateProperty.all<Color>(Color(0xFFDEDCD2)),
+                    shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                        RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(25.0),
+                      side: BorderSide(width: 2, color: Color(0xFFE7301C)),
+                    ))),
+                onPressed: () {},
               ),
-               style: ButtonStyle(
-                backgroundColor:
-                    MaterialStateProperty.all<Color>(Color(0xFF9B9A93)),
-                shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                    RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(25.0),
-                )),
-              ),
-              onPressed: () {
-                Navigator.pop(context);
-              },
             ),
-          ),
+            Container(
+              margin: EdgeInsets.only(
+                  top: 5.0, left: 30.0, right: 30.0, bottom: .0),
+              height: 60,
+              width: 194,
+              child: ElevatedButton(
+                child: Text(
+                  'Back',
+                  style: TextStyle(fontSize: 24.0),
+                ),
+                style: ButtonStyle(
+                  backgroundColor:
+                      MaterialStateProperty.all<Color>(Color(0xFF9B9A93)),
+                  shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                      RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(25.0),
+                  )),
+                ),
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+              ),
+            ),
           ],
         ),
       ),
