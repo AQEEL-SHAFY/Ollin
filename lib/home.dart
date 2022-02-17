@@ -94,7 +94,7 @@ class Home extends StatelessWidget {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                      builder: (context) => const EmergencyContact()),
+                      builder: (context) => const EmergencyContactWidget()),
                 );
               },
             ),

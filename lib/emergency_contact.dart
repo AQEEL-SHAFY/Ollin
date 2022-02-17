@@ -2,15 +2,18 @@
 
 import 'package:flutter/material.dart';
 import 'package:ollin/add_contact.dart';
+import 'package:ollin/entity/emergency_contact.dart';
+import 'package:ollin/provider/emergency_contacts.dart';
+import 'package:provider/provider.dart';
 
-class EmergencyContact extends StatefulWidget {
-  const EmergencyContact({Key? key}) : super(key: key);
+class EmergencyContactWidget extends StatefulWidget {
+  const EmergencyContactWidget({Key? key}) : super(key: key);
 
   @override
-  State<EmergencyContact> createState() => _EmergencyContactState();
+  State<EmergencyContactWidget> createState() => _EmergencyContactWidgetState();
 }
 
-class _EmergencyContactState extends State<EmergencyContact> {
+class _EmergencyContactWidgetState extends State<EmergencyContactWidget> {
   bool _isDelete = false;
   @override
   Widget build(BuildContext context) {
@@ -27,188 +30,98 @@ class _EmergencyContactState extends State<EmergencyContact> {
                 style: TextStyle(fontSize: 22.0),
               ),
             ),
-            Center(
-              child: Container(
-                margin: EdgeInsets.only(
-                    top: 0.0, left: 15.0, right: 15.0, bottom: 5.0),
-                child: Card(
-                  child: Wrap(children: <Widget>[
-                    Padding(padding: EdgeInsets.only(top: 0, left: 10)),
-                    Text(
-                      "FATHER               ",
-                      style: TextStyle(fontSize: 22.0, letterSpacing: 2.0),
-                    ),
-                    Text(
-                      " +94123456789 ",
-                      style: TextStyle(fontSize: 22.0, letterSpacing: 2.0),
-                    ),
-                    _isDelete
-                        ? Container(
-                            height: 53,
-                            width: 334,
-                            margin: EdgeInsets.only(
-                                top: 15.0,
-                                left: 30.0,
-                                right: 30.0,
-                                bottom: 25.0),
-                            child: RaisedButton(
-                                onPressed: () {},
-                                elevation: 0.0,
-                                shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(30.0)),
-                                child: Row(
-                                  mainAxisSize: MainAxisSize.min,
-                                  children: <Widget>[
-                                    Image.asset(
-                                      'images/alarm-warning-line.png',
-                                      height: 100.0,
-                                      width: 100.0,
-                                    ),
-                                    Padding(
-                                        padding:
-                                            EdgeInsets.fromLTRB(0, 1, 0, 0),
-                                        child: Text(
-                                          "Remove ",
-                                          style: TextStyle(fontSize: 23.0),
-                                        ))
-                                  ],
-                                ),
-                                textColor: Colors.white,
-                                color: Color(0xFFE7301C)),
-                          )
-                        : Container(
-                            height: 53,
-                            width: 334,
-                            margin: EdgeInsets.only(
-                                top: 15.0,
-                                left: 30.0,
-                                right: 30.0,
-                                bottom: 25.0),
-                            child: RaisedButton(
-                                onPressed: () {},
-                                elevation: 0.0,
-                                shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(30.0)),
-                                child: Row(
-                                  mainAxisSize: MainAxisSize.min,
-                                  children: <Widget>[
-                                    Image.asset(
-                                      'images/alarm-warning-line.png',
-                                      height: 100.0,
-                                      width: 100.0,
-                                    ),
-                                    Padding(
-                                        padding:
-                                            EdgeInsets.fromLTRB(0, 1, 0, 0),
-                                        child: Text(
-                                          "Press To Call ",
-                                          style: TextStyle(fontSize: 23.0),
-                                        ))
-                                  ],
-                                ),
-                                textColor: Colors.white,
-                                color: Color(0xFFE7301C)),
+            Consumer<EmergencyContacts>(builder: (context,emerge,child){
+              return Container(
+                height: 400,
+                child: ListView.builder(
+                    itemCount: emerge.emergencyContacts.length,
+                    itemBuilder: (context, index){
+                      return Center(
+                        child: Container(
+                          margin: EdgeInsets.only(
+                              top: 0.0, left: 15.0, right: 15.0, bottom: 0.0),
+                          child: Card(
+                            child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: <Widget>[
+                                  Padding(padding: EdgeInsets.only(top: 0, left: 10)),
+                                  Text(
+                                    emerge.emergencyContacts[index].name,
+                                    style: TextStyle(fontSize: 22.0, letterSpacing: 2.0),
+                                  ),
+                                  Text(
+                                    emerge.emergencyContacts[index].number,
+                                    style: TextStyle(fontSize: 22.0, letterSpacing: 2.0),
+                                  ),
+                                  _isDelete ?Container(
+                                    height: 53,
+                                    width: 334,
+                                    margin: EdgeInsets.only(
+                                        top: 15.0, left: 30.0, right: 30.0, bottom: 25.0),
+                                    child: RaisedButton(
+                                        onPressed: () {
+                                          //Provider.of<EmergencyContacts>(context,listen: false).removeContact(emerge.emergencyContacts[index].id);
+                                          emerge.removeContact(emerge.emergencyContacts[index].id);
+                                        },
+                                        elevation: 0.0,
+                                        shape: RoundedRectangleBorder(
+                                            borderRadius: BorderRadius.circular(30.0)),
+                                        child: Row(
+                                          mainAxisSize: MainAxisSize.min,
+                                          children: <Widget>[
+                                            Image.asset(
+                                              'images/alarm-warning-line.png',
+                                              height: 100.0,
+                                              width: 100.0,
+                                            ),
+                                            Padding(
+                                                padding: EdgeInsets.fromLTRB(0, 1, 0, 0),
+                                                child: Text(
+                                                  "Remove ",
+                                                  style: TextStyle(fontSize: 23.0),
+                                                ))
+                                          ],
+                                        ),
+                                        textColor: Colors.white,
+                                        color: Color(0xFFE7301C)),
+                                  ) :Container(
+                                    height: 53,
+                                    width: 334,
+                                    margin: EdgeInsets.only(
+                                        top: 15.0, left: 30.0, right: 30.0, bottom: 25.0),
+                                    child: RaisedButton(
+                                        onPressed: () {},
+                                        elevation: 0.0,
+                                        shape: RoundedRectangleBorder(
+                                            borderRadius: BorderRadius.circular(30.0)),
+                                        child: Row(
+                                          mainAxisSize: MainAxisSize.min,
+                                          children: <Widget>[
+                                            Image.asset(
+                                              'images/alarm-warning-line.png',
+                                              height: 100.0,
+                                              width: 100.0,
+                                            ),
+                                            Padding(
+                                                padding: EdgeInsets.fromLTRB(0, 1, 0, 0),
+                                                child: Text(
+                                                  "Press To Call ",
+                                                  style: TextStyle(fontSize: 23.0),
+                                                ))
+                                          ],
+                                        ),
+                                        textColor: Colors.white,
+                                        color: Color(0xFFE7301C)),
+                                  ),
+                                ]),
                           ),
-                  ]),
-                ),
-              ),
-            ),
-            Center(
-              child: Container(
-                margin: EdgeInsets.only(
-                    top: 0.0, left: 15.0, right: 15.0, bottom: 5.0),
-                child: Card(
-                  child: Wrap(children: <Widget>[
-                    Padding(padding: EdgeInsets.only(top: 0, left: 10)),
-                    Text(
-                      "HOSPITAL                        ",
-                      style: TextStyle(fontSize: 22.0, letterSpacing: 2.0),
-                    ),
-                    Text(
-                      " 1990 ",
-                      style: TextStyle(fontSize: 22.0, letterSpacing: 2.0),
-                    ),
-                    Container(
-                      height: 53,
-                      width: 334,
-                      margin: EdgeInsets.only(
-                          top: 15.0, left: 30.0, right: 30.0, bottom: 25.0),
-                      child: RaisedButton(
-                          onPressed: () {},
-                          elevation: 0.0,
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(30.0)),
-                          child: Row(
-                            mainAxisSize: MainAxisSize.min,
-                            children: <Widget>[
-                              Image.asset(
-                                'images/alarm-warning-line.png',
-                                height: 100.0,
-                                width: 100.0,
-                              ),
-                              Padding(
-                                  padding: EdgeInsets.fromLTRB(0, 1, 0, 0),
-                                  child: Text(
-                                    "Press To Call ",
-                                    style: TextStyle(fontSize: 23.0),
-                                  ))
-                            ],
-                          ),
-                          textColor: Colors.white,
-                          color: Color(0xFFE7301C)),
-                    ),
-                  ]),
-                ),
-              ),
-            ),
-            Center(
-              child: Container(
-                margin: EdgeInsets.only(
-                    top: 0.0, left: 15.0, right: 15.0, bottom: 0.0),
-                child: Card(
-                  child: Wrap(children: <Widget>[
-                    Padding(padding: EdgeInsets.only(top: 0, left: 10)),
-                    Text(
-                      "POLICE                              ",
-                      style: TextStyle(fontSize: 22.0, letterSpacing: 2.0),
-                    ),
-                    Text(
-                      " 119 ",
-                      style: TextStyle(fontSize: 22.0, letterSpacing: 2.0),
-                    ),
-                    Container(
-                      height: 53,
-                      width: 334,
-                      margin: EdgeInsets.only(
-                          top: 15.0, left: 30.0, right: 30.0, bottom: 25.0),
-                      child: RaisedButton(
-                          onPressed: () {},
-                          elevation: 0.0,
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(30.0)),
-                          child: Row(
-                            mainAxisSize: MainAxisSize.min,
-                            children: <Widget>[
-                              Image.asset(
-                                'images/alarm-warning-line.png',
-                                height: 100.0,
-                                width: 100.0,
-                              ),
-                              Padding(
-                                  padding: EdgeInsets.fromLTRB(0, 1, 0, 0),
-                                  child: Text(
-                                    "Press To Call ",
-                                    style: TextStyle(fontSize: 23.0),
-                                  ))
-                            ],
-                          ),
-                          textColor: Colors.white,
-                          color: Color(0xFFE7301C)),
-                    ),
-                  ]),
-                ),
-              ),
-            ),
+                        ),
+                      );
+                    }),
+              );
+            })
+            ,
+
             Container(
               margin: EdgeInsets.only(
                   top: 10.0, left: 20.0, right: 20.0, bottom: 10.0),
