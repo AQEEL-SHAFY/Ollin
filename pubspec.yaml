@@ -42,7 +42,7 @@ dependencies:
   flutter_polyline_points: ^0.2.6
 
 
-  # camera: ^0.9.4+10
+#   camera: ^0.9.4+10
 
 dev_dependencies:
   flutter_test:
