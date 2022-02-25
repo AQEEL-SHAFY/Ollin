@@ -53,7 +53,7 @@ class _EmergencyContactWidgetState extends State<EmergencyContactWidget> {
                                     emerge.emergencyContacts[index].number,
                                     style: TextStyle(fontSize: 22.0, letterSpacing: 2.0),
                                   ),
-                                  _isDelete ?Container(
+                                  if (_isDelete) Container(
                                     height: 53,
                                     width: 334,
                                     margin: EdgeInsets.only(
@@ -61,7 +61,7 @@ class _EmergencyContactWidgetState extends State<EmergencyContactWidget> {
                                     child: RaisedButton(
                                         onPressed: () {
                                           //Provider.of<EmergencyContacts>(context,listen: false).removeContact(emerge.emergencyContacts[index].id);
-                                          emerge.removeContact(emerge.emergencyContacts[index].id);
+                                          emerge.removeContact(emerge.emergencyContacts[index].id!);
                                         },
                                         elevation: 0.0,
                                         shape: RoundedRectangleBorder(
@@ -84,7 +84,7 @@ class _EmergencyContactWidgetState extends State<EmergencyContactWidget> {
                                         ),
                                         textColor: Colors.white,
                                         color: Color(0xFFE7301C)),
-                                  ) :Container(
+                                  ) else Container(
                                     height: 53,
                                     width: 334,
                                     margin: EdgeInsets.only(
@@ -143,7 +143,7 @@ class _EmergencyContactWidgetState extends State<EmergencyContactWidget> {
                 onPressed: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => const AddContact()),
+                    MaterialPageRoute(builder: (context) => AddContact()),
                   );
                 },
               ),

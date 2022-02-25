@@ -19,7 +19,12 @@ class MyApp extends StatelessWidget {
       ChangeNotifierProvider(
         create: (context) => EmergencyContacts(),
       ),
-      ChangeNotifierProvider(create: (context)=>SampleProvider(),)
+      ChangeNotifierProvider(
+        create: (context)=>SampleProvider(),
+      ),
+      ChangeNotifierProvider(
+      create: (context)=>SampleProvider(),
+      ),
     ],
       child:  MaterialApp(
         debugShowCheckedModeBanner: false,

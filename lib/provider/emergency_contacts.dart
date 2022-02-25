@@ -16,4 +16,8 @@ class EmergencyContacts extends ChangeNotifier{
     _emergencyContacts.removeWhere((element) => element.id == id);
     notifyListeners();
   }
+  addContact(EmergencyContact value){
+    _emergencyContacts.add(value);
+    notifyListeners();
+  }
 }

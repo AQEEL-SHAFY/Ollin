@@ -1,7 +1,8 @@
 class EmergencyContact{
-  late int id;
+   int? id;
   late String name;
   late String number;
 
-  EmergencyContact(this.id,this.name, this.number);
+   EmergencyContact(this.id, this.name, this.number);
+   EmergencyContact.newContact(this.name, this.number);
 }

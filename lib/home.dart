@@ -15,7 +15,7 @@ class Home extends StatelessWidget {
       body: Center(
         child: Column(children: <Widget>[
           Container(
-            margin: const EdgeInsets.only(top: 100.0),
+            margin: const EdgeInsets.only(top: 90.0),
             child: Center(
               child: Image.asset('images/ollin_transparent.png'),
             ),
@@ -24,7 +24,7 @@ class Home extends StatelessWidget {
             height: 111,
             width: 448,
             margin: EdgeInsets.only(
-                top: 25.0, left: 30.0, right: 30.0, bottom: 25.0),
+                top: 20.0, left: 30.0, right: 30.0, bottom: 20.0),
             child: ElevatedButton(
               child: Text(
                 'Assist Me',
@@ -50,7 +50,7 @@ class Home extends StatelessWidget {
             height: 111,
             width: 448,
             margin: EdgeInsets.only(
-                top: 25.0, left: 30.0, right: 30.0, bottom: 25.0),
+                top: 20.0, left: 30.0, right: 30.0, bottom: 20.0),
             child: ElevatedButton(
               child: Text(
                 'Find My Location',
@@ -76,7 +76,7 @@ class Home extends StatelessWidget {
             height: 111,
             width: 448,
             margin: EdgeInsets.only(
-                top: 25.0, left: 30.0, right: 30.0, bottom: 25.0),
+                top: 20.0, left: 30.0, right: 30.0, bottom: 20.0),
             child: ElevatedButton(
               child: Text(
                 'Emergency Contact',
