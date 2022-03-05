@@ -40,9 +40,12 @@ dependencies:
   google_maps_flutter: ^2.1.1
   dio: ^4.0.0
   flutter_polyline_points: ^0.2.6
+  camera: ^0.9.4+14
+  path: ^1.8.1
+  path_provider: ^2.0.9
+  shared_preferences: ^2.0.13
+  geolocator: ^8.2.0
 
-
-#   camera: ^0.9.4+10
 
 dev_dependencies:
   flutter_test:

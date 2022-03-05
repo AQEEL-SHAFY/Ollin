@@ -13,22 +13,19 @@ class FindLocation extends StatefulWidget {
 }
 
 class _FindLocationState extends State<FindLocation> {
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
+      body: SingleChildScrollView(
         child: Column(children: <Widget>[
           Container(
-            margin:
-            const EdgeInsets.only(top: 50.0, left: 50.0, right: 50.0),
+            margin: const EdgeInsets.only(top: 50.0, left: 50.0, right: 50.0),
             height: 500,
             width: 309,
-            child: MapSample(),
+            child: CurrentLocationScreen(),
           ),
           Container(
-            margin:
-            const EdgeInsets.only(top: 30.0, left: 50.0, right: 50.0),
+            margin: const EdgeInsets.only(top: 30.0, left: 50.0, right: 50.0),
             height: 72,
             width: 309,
             child: ElevatedButton(
@@ -38,15 +35,13 @@ class _FindLocationState extends State<FindLocation> {
               ),
               style: ButtonStyle(
                 backgroundColor:
-                MaterialStateProperty.all<Color>(Color(0xFF014268)),
+                    MaterialStateProperty.all<Color>(Color(0xFF014268)),
                 shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                     RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(25.0),
-                    )),
+                  borderRadius: BorderRadius.circular(25.0),
+                )),
               ),
-              onPressed: () {
-
-              },
+              onPressed: () {},
             ),
           ),
           // Container(
@@ -77,8 +72,7 @@ class _FindLocationState extends State<FindLocation> {
           //   ),
           // ),
           Container(
-            margin:
-            const EdgeInsets.only(top: 10.0, left: 50.0, right: 50.0),
+            margin: const EdgeInsets.only(top: 10.0, left: 50.0, right: 50.0),
             height: 72,
             width: 309,
             child: ElevatedButton(
@@ -88,11 +82,11 @@ class _FindLocationState extends State<FindLocation> {
               ),
               style: ButtonStyle(
                 backgroundColor:
-                MaterialStateProperty.all<Color>(Color(0xFF9B9A93)),
+                    MaterialStateProperty.all<Color>(Color(0xFF9B9A93)),
                 shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                     RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(25.0),
-                    )),
+                  borderRadius: BorderRadius.circular(25.0),
+                )),
               ),
               onPressed: () {
                 Navigator.pop(context);
@@ -104,5 +98,3 @@ class _FindLocationState extends State<FindLocation> {
     );
   }
 }
-
-

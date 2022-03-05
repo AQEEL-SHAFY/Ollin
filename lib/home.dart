@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:ollin/assist_me.dart';
+import 'package:ollin/camera.dart';
 import 'package:ollin/emergency_contact.dart';
 import 'package:ollin/find_location.dart';
 
@@ -12,7 +13,7 @@ class Home extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Color(0xFFDEDCD2),
-      body: Center(
+      body: SingleChildScrollView(
         child: Column(children: <Widget>[
           Container(
             margin: const EdgeInsets.only(top: 90.0),
@@ -41,7 +42,7 @@ class Home extends StatelessWidget {
               onPressed: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => const AssistMe()),
+                  MaterialPageRoute(builder: (context) => cameraScreen()),
                 );
               },
             ),
