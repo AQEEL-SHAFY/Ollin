@@ -6,7 +6,7 @@ classes = []
 with open('coco.names', 'r') as f:
     classes = f.read().splitlines()
 
-capture = cv2.VideoCapture(0)
+capture = cv2.VideoCapture(0, cv2.CAP_DSHOW)
 # img = cv2.imread('image3.jpg')
 
 while True:
