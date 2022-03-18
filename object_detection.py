@@ -1,3 +1,5 @@
+# @demetre the commented lines are for the cam access on a PC
+
 import cv2
 import numpy as np
 
@@ -6,11 +8,11 @@ classes = []
 with open('coco.names', 'r') as f:
     classes = f.read().splitlines()
 
-capture = cv2.VideoCapture(0, cv2.CAP_DSHOW)
-# img = cv2.imread('image3.jpg')
+# capture = cv2.VideoCapture(0, cv2.CAP_DSHOW)
+img = cv2.imread('image3.jpg') # @demetre change the image source
 
-while True:
-    _, img = capture.read()
+# while True:
+    # _, img = img.read()
     height, width, _ = img.shape
 
     blob = cv2.dnn.blobFromImage(img, 1 / 255, (416, 416), (0, 0, 0), swapRB=True, crop=False)
@@ -59,9 +61,9 @@ while True:
     cv2.imshow('Render', img)
     key = cv2.waitKey(1)
 
-    if key == 27:
-        break
+    # if key == 27:
+        # break
 
-capture.release()
+# capture.release()
 
 cv2.destroyAllWindows()
