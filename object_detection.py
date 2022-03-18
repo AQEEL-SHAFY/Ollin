@@ -1,5 +1,5 @@
 # @demetre the commented lines are for the cam access on a PC
-#shape
+
 
 import cv2
 import numpy as np
