@@ -3,10 +3,11 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_tts/flutter_tts.dart';
 import 'package:ollin/entity/emergency_contact.dart';
 import 'package:ollin/provider/emergency_contacts.dart';
 import 'package:provider/provider.dart';
-
+FlutterTts flutterTts = FlutterTts();
 class AddContact extends StatefulWidget {
    const AddContact({Key? key}) : super(key: key);
 
@@ -23,6 +24,9 @@ class _AddContactState extends State<AddContact> {
 
   @override
   Widget build(BuildContext context) {
+             Future _speak() async {
+      await flutterTts.speak('The contact has been successfully saved');
+    }
     return Scaffold(
       backgroundColor: Color(0xFFDEDCD2),
       body: Center(
@@ -152,7 +156,7 @@ class _AddContactState extends State<AddContact> {
                   Provider.of<EmergencyContacts>(context,listen: false).addContact(addContact);
                   await alertDialog(
                     context,
-                  );
+                  );_speak();
                 },
               ),
             ),

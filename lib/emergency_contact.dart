@@ -1,10 +1,13 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, deprecated_member_use, avoid_unnecessary_containers, sized_box_for_whitespace
 
 import 'package:flutter/material.dart';
+import 'package:flutter_tts/flutter_tts.dart';
 import 'package:ollin/add_contact.dart';
 import 'package:ollin/entity/emergency_contact.dart';
 import 'package:ollin/provider/emergency_contacts.dart';
 import 'package:provider/provider.dart';
+
+FlutterTts flutterTts = FlutterTts();
 
 class EmergencyContactWidget extends StatefulWidget {
   const EmergencyContactWidget({Key? key}) : super(key: key);
@@ -15,8 +18,20 @@ class EmergencyContactWidget extends StatefulWidget {
 
 class _EmergencyContactWidgetState extends State<EmergencyContactWidget> {
   bool _isDelete = false;
+
   @override
   Widget build(BuildContext context) {
+   
+
+    Future _speak1() async {
+      await flutterTts.speak('You can add contacts here');
+    }
+
+    Future _speak2() async {
+      await flutterTts.speak(
+          'You can now delete a contact, Navigate and confirm or seek help if deficult');
+    }
+
     return Scaffold(
       backgroundColor: Color(0xFFDEDCD2),
       body: Center(
@@ -30,12 +45,12 @@ class _EmergencyContactWidgetState extends State<EmergencyContactWidget> {
                 style: TextStyle(fontSize: 22.0),
               ),
             ),
-            Consumer<EmergencyContacts>(builder: (context,emerge,child){
+            Consumer<EmergencyContacts>(builder: (context, emerge, child) {
               return Container(
                 height: 400,
                 child: ListView.builder(
                     itemCount: emerge.emergencyContacts.length,
-                    itemBuilder: (context, index){
+                    itemBuilder: (context, index) {
                       return Center(
                         child: Container(
                           margin: EdgeInsets.only(
@@ -44,84 +59,102 @@ class _EmergencyContactWidgetState extends State<EmergencyContactWidget> {
                             child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: <Widget>[
-                                  Padding(padding: EdgeInsets.only(top: 0, left: 10)),
+                                  Padding(
+                                      padding:
+                                          EdgeInsets.only(top: 0, left: 10)),
                                   Text(
                                     emerge.emergencyContacts[index].name,
-                                    style: TextStyle(fontSize: 22.0, letterSpacing: 2.0),
+                                    style: TextStyle(
+                                        fontSize: 22.0, letterSpacing: 2.0),
                                   ),
                                   Text(
                                     emerge.emergencyContacts[index].number,
-                                    style: TextStyle(fontSize: 22.0, letterSpacing: 2.0),
+                                    style: TextStyle(
+                                        fontSize: 22.0, letterSpacing: 2.0),
                                   ),
-                                  if (_isDelete) Container(
-                                    height: 53,
-                                    width: 334,
-                                    margin: EdgeInsets.only(
-                                        top: 15.0, left: 30.0, right: 30.0, bottom: 25.0),
-                                    child: RaisedButton(
-                                        onPressed: () {
-                                          //Provider.of<EmergencyContacts>(context,listen: false).removeContact(emerge.emergencyContacts[index].id);
-                                          emerge.removeContact(emerge.emergencyContacts[index].id!);
-                                        },
-                                        elevation: 0.0,
-                                        shape: RoundedRectangleBorder(
-                                            borderRadius: BorderRadius.circular(30.0)),
-                                        child: Row(
-                                          mainAxisSize: MainAxisSize.min,
-                                          children: <Widget>[
-                                            Image.asset(
-                                              'images/alarm-warning-line.png',
-                                              height: 100.0,
-                                              width: 100.0,
-                                            ),
-                                            Padding(
-                                                padding: EdgeInsets.fromLTRB(0, 1, 0, 0),
-                                                child: Text(
-                                                  "Remove ",
-                                                  style: TextStyle(fontSize: 23.0),
-                                                ))
-                                          ],
-                                        ),
-                                        textColor: Colors.white,
-                                        color: Color(0xFFE7301C)),
-                                  ) else Container(
-                                    height: 53,
-                                    width: 334,
-                                    margin: EdgeInsets.only(
-                                        top: 15.0, left: 30.0, right: 30.0, bottom: 25.0),
-                                    child: RaisedButton(
-                                        onPressed: () {},
-                                        elevation: 0.0,
-                                        shape: RoundedRectangleBorder(
-                                            borderRadius: BorderRadius.circular(30.0)),
-                                        child: Row(
-                                          mainAxisSize: MainAxisSize.min,
-                                          children: <Widget>[
-                                            Image.asset(
-                                              'images/alarm-warning-line.png',
-                                              height: 100.0,
-                                              width: 100.0,
-                                            ),
-                                            Padding(
-                                                padding: EdgeInsets.fromLTRB(0, 1, 0, 0),
-                                                child: Text(
-                                                  "Press To Call ",
-                                                  style: TextStyle(fontSize: 23.0),
-                                                ))
-                                          ],
-                                        ),
-                                        textColor: Colors.white,
-                                        color: Color(0xFFE7301C)),
-                                  ),
+                                  if (_isDelete)
+                                    Container(
+                                      height: 53,
+                                      width: 334,
+                                      margin: EdgeInsets.only(
+                                          top: 15.0,
+                                          left: 30.0,
+                                          right: 30.0,
+                                          bottom: 25.0),
+                                      child: RaisedButton(
+                                          onPressed: () {
+                                            //Provider.of<EmergencyContacts>(context,listen: false).removeContact(emerge.emergencyContacts[index].id);
+                                            emerge.removeContact(emerge
+                                                .emergencyContacts[index].id!);
+                                          },
+                                          elevation: 0.0,
+                                          shape: RoundedRectangleBorder(
+                                              borderRadius:
+                                                  BorderRadius.circular(30.0)),
+                                          child: Row(
+                                            mainAxisSize: MainAxisSize.min,
+                                            children: <Widget>[
+                                              Image.asset(
+                                                'images/alarm-warning-line.png',
+                                                height: 100.0,
+                                                width: 100.0,
+                                              ),
+                                              Padding(
+                                                  padding: EdgeInsets.fromLTRB(
+                                                      0, 1, 0, 0),
+                                                  child: Text(
+                                                    "Remove ",
+                                                    style: TextStyle(
+                                                        fontSize: 23.0),
+                                                  ))
+                                            ],
+                                          ),
+                                          textColor: Colors.white,
+                                          color: Color(0xFFE7301C)),
+                                    )
+                                  else
+                                    Container(
+                                      height: 53,
+                                      width: 334,
+                                      margin: EdgeInsets.only(
+                                          top: 15.0,
+                                          left: 30.0,
+                                          right: 30.0,
+                                          bottom: 25.0),
+                                      child: RaisedButton(
+                                          onPressed: () {},
+                                          elevation: 0.0,
+                                          shape: RoundedRectangleBorder(
+                                              borderRadius:
+                                                  BorderRadius.circular(30.0)),
+                                          child: Row(
+                                            mainAxisSize: MainAxisSize.min,
+                                            children: <Widget>[
+                                              Image.asset(
+                                                'images/alarm-warning-line.png',
+                                                height: 100.0,
+                                                width: 100.0,
+                                              ),
+                                              Padding(
+                                                  padding: EdgeInsets.fromLTRB(
+                                                      0, 1, 0, 0),
+                                                  child: Text(
+                                                    "Press To Call ",
+                                                    style: TextStyle(
+                                                        fontSize: 23.0),
+                                                  ))
+                                            ],
+                                          ),
+                                          textColor: Colors.white,
+                                          color: Color(0xFFE7301C)),
+                                    ),
                                 ]),
                           ),
                         ),
                       );
                     }),
               );
-            })
-            ,
-
+            }),
             Container(
               margin: EdgeInsets.only(
                   top: 10.0, left: 20.0, right: 20.0, bottom: 10.0),
@@ -141,6 +174,7 @@ class _EmergencyContactWidgetState extends State<EmergencyContactWidget> {
                   )),
                 ),
                 onPressed: () {
+                  _speak1();
                   Navigator.push(
                     context,
                     MaterialPageRoute(builder: (context) => AddContact()),
@@ -167,9 +201,11 @@ class _EmergencyContactWidgetState extends State<EmergencyContactWidget> {
                       side: BorderSide(width: 2, color: Color(0xFFE7301C)),
                     ))),
                 onPressed: () {
+                 _speak2();
                   setState(() {
                     _isDelete = !_isDelete;
                   });
+                   
                 },
               ),
             ),

@@ -45,6 +45,10 @@ dependencies:
   path_provider: ^2.0.9
   shared_preferences: ^2.0.13
   geolocator: ^8.2.0
+  image_picker: ^0.8.4+11
+  gallery_saver: ^2.3.2
+  flutter_tts: ^3.3.3
+  geocoding: ^2.0.4
 
 
 dev_dependencies:
