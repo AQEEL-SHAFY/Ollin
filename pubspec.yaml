@@ -51,6 +51,8 @@ dependencies:
   geocoding: ^2.0.4
   sqflite: any
   path_provider_android: any
+  url_launcher: ^6.0.20
+  flutter_phone_direct_caller: ^2.1.0
 
 
 dev_dependencies:

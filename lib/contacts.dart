@@ -1,5 +1,8 @@
 // main.dart
 import 'package:flutter/material.dart';
+import 'package:flutter_phone_direct_caller/flutter_phone_direct_caller.dart';
+import 'package:url_launcher/url_launcher.dart';
+
 
 import 'database.dart';
 
@@ -180,13 +183,20 @@ class _ContactPageState extends State<ContactPage> {
                     width: 100,
                     child: Row(
                       children: [
-                        IconButton(
-                          icon: const Icon(Icons.edit),
-                          onPressed: () => _showForm(_journals[index]['id']),
-                        ),
+                        // IconButton(
+                        //   icon: const Icon(Icons.edit),
+                        //   onPressed: () => _showForm(_journals[index]['id']),
+                        // ),
                         IconButton(
                           icon: const Icon(Icons.delete),
                           onPressed: () => _deleteItem(_journals[index]['id']),
+                          // launch(('tel://${item.mobile_no}'));
+                        ),
+                        IconButton(
+                          icon: const Icon(Icons.call),
+                          onPressed: () =>launch(('tel:${_journals[index]['description']}')),
+                          //  FlutterPhoneDirectCaller.callNumber(_journals[index]['description']);
+                          // launch(('tel://${item.mobile_no}'));
                         ),
                       ],
                     ),
