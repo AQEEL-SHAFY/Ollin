@@ -180,23 +180,22 @@ class _ContactPageState extends State<ContactPage> {
                   title: Text(_journals[index]['title']),
                   subtitle: Text(_journals[index]['description']),
                   trailing: SizedBox(
-                    width: 100,
+                    width:145,
                     child: Row(
                       children: [
-                        // IconButton(
-                        //   icon: const Icon(Icons.edit),
-                        //   onPressed: () => _showForm(_journals[index]['id']),
-                        // ),
+                        IconButton(
+                          icon: const Icon(Icons.edit),
+                          onPressed: () => _showForm(_journals[index]['id']),
+                        ),
                         IconButton(
                           icon: const Icon(Icons.delete),
                           onPressed: () => _deleteItem(_journals[index]['id']),
-                          // launch(('tel://${item.mobile_no}'));
+                     
                         ),
                         IconButton(
                           icon: const Icon(Icons.call),
                           onPressed: () =>launch(('tel:${_journals[index]['description']}')),
-                          //  FlutterPhoneDirectCaller.callNumber(_journals[index]['description']);
-                          // launch(('tel://${item.mobile_no}'));
+                         
                         ),
                       ],
                     ),
