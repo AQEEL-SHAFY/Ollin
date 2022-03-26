@@ -4,7 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_tts/flutter_tts.dart';
 import 'package:ollin/assist_me.dart';
 import 'package:ollin/camera.dart';
-import 'package:ollin/emergency_contact.dart';
+import 'package:ollin/contacts.dart';
+
 import 'package:ollin/find_location.dart';
 
 FlutterTts flutterTts = FlutterTts();
@@ -15,12 +16,14 @@ class Home extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Future _speak() async {
-      await flutterTts.speak('Wellcome to ollin, The indoor navigation for visual impared...... Aayubowan, Oba Ollin sewaawata saadarayen piligannawa');
+      await flutterTts.speak(
+          'Wellcome to ollin, The indoor navigation for visual impared...... Aayubowan, Oba Ollin sewaawata saadarayen piligannawa');
     }
- Future _speak1() async {
+
+    Future _speak1() async {
       await flutterTts.speak('You have access the contacts');
     }
-  
+
     _speak();
     return Scaffold(
       backgroundColor: Color(0xFFDEDCD2),
@@ -103,11 +106,10 @@ class Home extends StatelessWidget {
                 )),
               ),
               onPressed: () {
-                  _speak1();
+                _speak1();
                 Navigator.push(
                   context,
-                  MaterialPageRoute(
-                      builder: (context) => const EmergencyContactWidget()),
+                  MaterialPageRoute(builder: (context) => const ContactPage()),
                 );
               },
             ),

@@ -2,8 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:ollin/home.dart';
-import 'package:ollin/provider/emergency_contacts.dart';
-import 'package:ollin/provider/smaple_prvider.dart';
+
 import 'package:provider/provider.dart';
 
 void main() {
@@ -15,24 +14,9 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MultiProvider(providers: [
-      ChangeNotifierProvider(
-        create: (context) => EmergencyContacts(),
-      ),
-      ChangeNotifierProvider(
-        create: (context)=>SampleProvider(),
-      ),
-      ChangeNotifierProvider(
-      create: (context)=>SampleProvider(),
-      ),
-    ],
-      child:  MaterialApp(
-        debugShowCheckedModeBanner: false,
-        home: Home(), ),
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: Home(),
     );
-
-
-
-
   }
 }

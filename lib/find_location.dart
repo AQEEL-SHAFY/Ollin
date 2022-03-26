@@ -2,9 +2,10 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_tts/flutter_tts.dart';
-import 'package:ollin/emergency_contact.dart';
+
 import '';
 import 'google_map.dart';
+
 FlutterTts flutterTts = FlutterTts();
 
 class FindLocation extends StatefulWidget {
