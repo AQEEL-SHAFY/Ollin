@@ -104,8 +104,6 @@ class CurrentLocationScreen extends StatelessWidget {
 }
 
 class Homepage extends StatefulWidget {
-
- 
   const Homepage({Key? key}) : super(key: key);
 
   @override
@@ -114,7 +112,7 @@ class Homepage extends StatefulWidget {
 
 class _HomepageState extends State<Homepage> {
   String location = 'Null, Press Button';
-  String Address = 'searching';
+  String Address = 'Location';
 
   Future<Position> _getGeoLocationPosition() async {
     bool serviceEnabled;
@@ -156,8 +154,6 @@ class _HomepageState extends State<Homepage> {
   }
 
   Future<void> GetAddressFromLatLong(Position position) async {
-  
-  
     List<Placemark> placemarks =
         await placemarkFromCoordinates(position.latitude, position.longitude);
     print(placemarks);
@@ -168,7 +164,6 @@ class _HomepageState extends State<Homepage> {
       await flutterTts.speak(Address);
     }
 
-
     _speak();
     setState(() {});
   }
@@ -176,23 +171,147 @@ class _HomepageState extends State<Homepage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text('$Address'),
-            ElevatedButton(
+      backgroundColor: Color(0xFFDEDCD2),
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Container(
+              //   child: Center(
+              //     child: Image.asset('images/ollin_transparent.png'),
+
+              //   ),
+              ),
+          InkWell(
+            onTap: () async {
+              Position position = await _getGeoLocationPosition();
+              location =
+                  'Lat: ${position.latitude} , Long: ${position.longitude}';
+              GetAddressFromLatLong(position);
+            }, // Handle your callback.
+            splashColor: Color(0xFFDEDCD2),
+
+            child: Ink(
+              height: 250,
+              width: 200,
+              decoration: BoxDecoration(
+                image: DecorationImage(
+                  image: AssetImage('images/locator.png'),
+                  fit: BoxFit.cover,
+                ),
+              ),
+            ),
+          ),
+          // height: 70,
+          // width: 528,
+
+          //   width: MediaQuery.of(context).size.width,
+          //   margin: EdgeInsets.only(bottom: 50.0),
+          //   child: ElevatedButton(
+          //       style: ButtonStyle(
+          //         backgroundColor:
+          //             MaterialStateProperty.all<Color>(Color(0xFF014268)),
+          //         shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+          //             RoundedRectangleBorder(
+          //                 // borderRadius: BorderRadius.circular(25.0),
+          //                 )),
+          //       ),
+          //       onPressed: () async {
+          //         Position position = await _getGeoLocationPosition();
+          //         location =
+          //             'Lat: ${position.latitude} , Long: ${position.longitude}';
+          //         GetAddressFromLatLong(position);
+          //       },
+          //       child: Padding(
+          //         padding: EdgeInsets.only(top: 40, bottom: 40),
+          //         child: Text(
+          //           'Tell My Location',
+          //           style: TextStyle(fontSize: 24.0),
+          //         ),
+          //       )),
+          // ),
+          Container(
+            // height: 300,
+            // width: 400,
+
+            child: Text(
+              '$Address',
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 50.0,
+                  color: Colors.grey),
+            ),
+          ),
+
+          Container(
+            // height: 70,
+            // width: 528,
+
+            width: MediaQuery.of(context).size.width,
+            margin: EdgeInsets.only(bottom: 50.0),
+            child: ElevatedButton(
+                style: ButtonStyle(
+                  backgroundColor:
+                      MaterialStateProperty.all<Color>(Color(0xFF014268)),
+                  shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                      RoundedRectangleBorder(
+                          // borderRadius: BorderRadius.circular(25.0),
+                          )),
+                ),
                 onPressed: () async {
                   Position position = await _getGeoLocationPosition();
                   location =
                       'Lat: ${position.latitude} , Long: ${position.longitude}';
                   GetAddressFromLatLong(position);
                 },
-                child: Text('Get Location'))
-          ],
-        ),
+                child: Padding(
+                  padding: EdgeInsets.only(top: 40, bottom: 40),
+                  child: Text(
+                    'Tell My Location',
+                    style: TextStyle(fontSize: 24.0),
+                  ),
+                )),
+          ),
+
+          //    Container(
+          // height: 102,
+          //   width: 300,
+          //   margin: EdgeInsets.only(
+          //       top: 100.0, left: 30.0, right: 30.0, bottom: 0.0),
+          //   child: ElevatedButton(
+          //     style: ButtonStyle(
+          //       backgroundColor:
+          //           MaterialStateProperty.all<Color>(Color(0xFF014268)),
+          //       shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+          //           RoundedRectangleBorder(
+          //         borderRadius: BorderRadius.circular(25.0),
+          //       )),
+          //     ),
+          //     onPressed: () async {
+          //         Position position = await _getGeoLocationPosition();
+          //         location =
+          //             'Lat: ${position.latitude} , Long: ${position.longitude}';
+          //         GetAddressFromLatLong(position);
+          //       },
+          //     child: Align(
+          // alignment: Alignment.bottomCenter,
+          //     child: Text(
+          //       'Tell My Location',
+          //       style: TextStyle(fontSize: 24.0),
+          //     ),
+          //     ),
+          //   ),
+          // ),
+          //   ElevatedButton(
+          //       onPressed: () async {
+          //         Position position = await _getGeoLocationPosition();
+          //         location =
+          //             'Lat: ${position.latitude} , Long: ${position.longitude}';
+          //         GetAddressFromLatLong(position);
+          //       },
+          //       child: Text('Get Location'))
+        ],
       ),
     );
   }
 }
-

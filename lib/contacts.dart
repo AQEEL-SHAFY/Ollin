@@ -1,10 +1,33 @@
 // main.dart
 import 'package:flutter/material.dart';
 import 'package:flutter_phone_direct_caller/flutter_phone_direct_caller.dart';
+import 'package:flutter_tts/flutter_tts.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-
 import 'database.dart';
+
+FlutterTts flutterTts = FlutterTts();
+Future _speak() async {
+  await flutterTts.speak('The Contact has been saved successfully ');
+}
+
+       Future _speak1() async {
+                                 await flutterTts.speak('The Contact has been deleted successfully');
+                        }
+
+Future _speak2() async {
+  await flutterTts
+      .speak('You can now edit the user name or the contact number ');
+}
+
+Future _speak3() async {
+  await flutterTts.speak('Calling ');
+}
+
+Future _speak4() async {
+  await flutterTts.speak(
+      'Now you can add a contact to your list... Please type the user name,mobile number and click the save contact button');
+}
 
 void main() {
   runApp(const MyApp());
@@ -63,6 +86,7 @@ class _ContactPageState extends State<ContactPage> {
           _journals.firstWhere((element) => element['id'] == id);
       _titleController.text = existingJournal['title'];
       _descriptionController.text = existingJournal['description'];
+
     }
 
     showModalBottomSheet(
@@ -71,7 +95,7 @@ class _ContactPageState extends State<ContactPage> {
         isScrollControlled: true,
         builder: (_) => Container(
               padding: EdgeInsets.only(
-                top: 50,
+                top: 10,
                 left: 15,
                 right: 15,
                 bottom: 5,
@@ -102,16 +126,16 @@ class _ContactPageState extends State<ContactPage> {
                         top: 50.0, left: 0.0, right: 0.0, bottom: 20.0),
                     child: ElevatedButton(
                       child: Text(
-                        (id == null ? 'Save Contact' : 'Update'),
+                        (id == null ? 'Save Contact' : 'Save Changes'),
                         style: TextStyle(fontSize: 24.0),
                       ),
                       style: ButtonStyle(
                         backgroundColor:
-                            MaterialStateProperty.all<Color>(Color(0xFF9B9A93)),
+                            MaterialStateProperty.all<Color>(Color(0xFF014268)),
                         shape:
                             MaterialStateProperty.all<RoundedRectangleBorder>(
                                 RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(25.0),
+                          // borderRadius: BorderRadius.circular(25.0),
                         )),
                       ),
                       onPressed: () async {
@@ -130,6 +154,7 @@ class _ContactPageState extends State<ContactPage> {
 
                         // Close the bottom sheet
                         Navigator.of(context).pop();
+                        _speak();
                       },
 
                       // ignore: prefer_const_constructors
@@ -140,14 +165,14 @@ class _ContactPageState extends State<ContactPage> {
             ));
   }
 
-// Insert a new journal to the database
+// Insert a new contact to the database
   Future<void> _addItem() async {
     await SQLHelper.createItem(
         _titleController.text, _descriptionController.text);
     _refreshJournals();
   }
 
-  // Update an existing journal
+  // Update an existing contact
   Future<void> _updateItem(int id) async {
     await SQLHelper.updateItem(
         id, _titleController.text, _descriptionController.text);
@@ -158,7 +183,7 @@ class _ContactPageState extends State<ContactPage> {
   void _deleteItem(int id) async {
     await SQLHelper.deleteItem(id);
     ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-      content: Text('Successfully deleted a journal!'),
+      content: Text('Successfully deleted a Contact!'),
     ));
     _refreshJournals();
   }
@@ -174,29 +199,48 @@ class _ContactPageState extends State<ContactPage> {
           : ListView.builder(
               itemCount: _journals.length,
               itemBuilder: (context, index) => Card(
-                color: Color.fromARGB(255, 221, 241, 255),
+                
+                color: const Color(0xFFFFFFFF),
                 margin: const EdgeInsets.all(15),
+                
                 child: ListTile(
-                  title: Text(_journals[index]['title']),
+
+                  title: Text(_journals[index]['title'].toUpperCase()),
                   subtitle: Text(_journals[index]['description']),
                   trailing: SizedBox(
-                    width:145,
+                    width: 145,
                     child: Row(
                       children: [
                         IconButton(
-                          icon: const Icon(Icons.edit),
-                          onPressed: () => _showForm(_journals[index]['id']),
-                        ),
+                            icon: const Icon(
+                              Icons.edit,
+                              color: Colors.black,
+                            ),
+                            onPressed: () {
+                              _showForm(_journals[index]['id']);
+                              _speak2();
+                            }),
+                            
                         IconButton(
-                          icon: const Icon(Icons.delete),
-                          onPressed: () => _deleteItem(_journals[index]['id']),
-                     
-                        ),
+                            icon: const Icon(
+                              Icons.delete,
+                              color: Colors.red,
+                            ),
+                            onPressed: () {
+                              _deleteItem(_journals[index]['id']);
+                       
+                              _speak1();
+                            }),
                         IconButton(
-                          icon: const Icon(Icons.call),
-                          onPressed: () =>launch(('tel:${_journals[index]['description']}')),
-                         
-                        ),
+                            icon: const Icon(
+                              Icons.call,
+                              color: Colors.green,
+                            ),
+                            onPressed: () {
+                              launch(
+                                  ('tel:${_journals[index]['description']}'));
+                              _speak3();
+                            }),
                       ],
                     ),
                   ),
@@ -204,10 +248,13 @@ class _ContactPageState extends State<ContactPage> {
               ),
             ),
       floatingActionButton: FloatingActionButton(
-        child: const Icon(Icons.add),
-        onPressed: () => _showForm(null),
-      ),
+         backgroundColor: Color(0xFF014268),
+          child: const Icon(Icons.add),
+          onPressed: () {
+            _showForm(null);
+            _speak4();
+          
+          }),
     );
-    // ignore: dead_code
   }
 }
