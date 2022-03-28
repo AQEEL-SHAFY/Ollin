@@ -10,6 +10,10 @@ import 'package:ollin/find_location.dart';
 import 'package:path/path.dart';
 
 FlutterTts flutterTts = FlutterTts();
+Future _speak1() async {
+  await flutterTts.speak('You have access the contacts');
+}
+
 //Common constants
 const containerCommonPadding = EdgeInsets.only(left: 20, right: 20);
 
@@ -30,16 +34,12 @@ class Home extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // Future _speak() async {
-    //   await flutterTts.speak(
-    //       'Wellcome to ollin, The indoor navigation for visual impared...... Aayubowan, Oba Ollin sewaawata saadarayen piligannawa');
-    // }
+    Future _speak() async {
+      await flutterTts.speak(
+          'Welcome to ollin, The indoor navigation for visual impared......');
+    }
 
-    // Future _speak1() async {
-    //   await flutterTts.speak('You have access the contacts');
-    // }
-
-    // _speak();
+    _speak();
     return Scaffold(
       backgroundColor: Color(0xFFDEDCD2),
       body: LayoutBuilder(
@@ -47,7 +47,7 @@ class Home extends StatelessWidget {
           if (constraints.maxWidth > 410) {
             return _screenLarger(context);
           } else {
-           return  _screenSmaller(context);
+            return _screenSmaller(context);
           }
         },
       ),
@@ -206,6 +206,7 @@ Widget _screenLarger(BuildContext context) {
                         MaterialPageRoute(
                             builder: (context) => const ContactPage()),
                       );
+                      _speak1();
                     },
                   ),
                 )
@@ -367,6 +368,7 @@ Widget _screenSmaller(BuildContext context) {
                         MaterialPageRoute(
                             builder: (context) => const ContactPage()),
                       );
+                      _speak1();
                     },
                   ),
                 )
