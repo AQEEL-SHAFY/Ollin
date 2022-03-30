@@ -1,0 +1,126 @@
+from flask import Flask, request
+import werkzeug
+import cv2
+import numpy as np
+
+app = Flask(__name__)
+
+@app.route("/")
+def test():
+    return "Working"
+
+
+@app.route("/ollin", methods=["POST"])
+def runOllin():
+    if request.method == "POST":
+        image = request.files["image"]
+        #section for database push/pull
+        fileName = API_tools.store(image)
+        imageForProcessing = API_tools.pullFromDB(fileName)
+
+        split_image = ollin_object_detection.splitter(imageForProcessing)
+        left_obj_list = ollin_object_detection.scanner(split_image, True, False)
+        right_obj_list = ollin_object_detection.scanner(split_image, False, True)
+        overall_obj_list = ollin_object_detection.scanner(imageForProcessing, False, False)
+
+        if (len(overall_obj_list) == (len(left_obj_list) + len(right_obj_list))):
+            print("nothing in front")
+        else:
+            print("theres an obstacle in front of you")
+
+        return "ollin ran successfully"
+
+
+class ollin_object_detection:
+
+    def splitter(input_img):
+        print("SPLITTER : started")
+        image = input_img
+        height = image.shape[0]
+        width = image.shape[1]
+        width_cutoff = width // 2
+        leftHalf = image[:, :width_cutoff]
+        rightHalf = image[:, width_cutoff:]
+        split_image = [leftHalf,rightHalf]
+        print("SPLITTER : success")
+        return split_image
+
+    def scanner(split_image, leftFlag, rightFlag):
+        print("SCANNER : started")
+        net = cv2.dnn.readNet('yolov3.weights', 'yolov3.cfg')
+        classes = []
+
+        with open('coco.names', 'r') as f:
+            classes = f.read().splitlines()
+
+        if(leftFlag == True):
+            print("SCANNER : scanning left image...")
+            img = split_image[0]
+        elif (rightFlag == True):
+            print("SCANNER : scanning right image...")
+            img = split_image[1]
+        else :
+            print("SCANNER : scanning overall image...")
+            img = split_image
+
+        height, width, _ = img.shape
+        blob = cv2.dnn.blobFromImage(img, 1 / 255, (416, 416), (0, 0, 0), swapRB=True, crop=False)
+        net.setInput(blob)
+
+        output_layers_names = net.getUnconnectedOutLayersNames()
+        layerOutputs = net.forward(output_layers_names)
+
+        boxes = []
+        confidences = []
+        class_ids = []
+
+        for output in layerOutputs:
+            for detection in output:
+                scores = detection[5:]
+                class_id = np.argmax(scores)
+                confidence = scores[class_id]
+                if confidence > 0.5:
+                    center_x = int(detection[0] * width)
+                    center_y = int(detection[1] * height)
+                    w = int(detection[2] * width)
+                    h = int(detection[3] * height)
+
+                    x = int(center_x - w / 2)
+                    y = int(center_y - h / 2)
+
+                    boxes.append([x, y, w, h])
+                    confidences.append((float(confidence)))
+                    class_ids.append(class_id)
+                    #(str(classes[class_id]))
+
+        #print(len(boxes))
+        indexes = cv2.dnn.NMSBoxes(boxes, confidences, 0.5, 0.4)
+
+        obstacleList = []
+        for i in indexes.flatten():
+            label = str(classes[class_ids[i]])
+            obstacleList.append(label)
+        print("SCANNER : success")
+        return obstacleList
+
+class API_tools:
+
+    def store(image):
+        print("API : storing")
+        fileName= werkzeug.utils.secure_filename(image.filename)
+        image.save('C:/Users/Demetre/Desktop/API test/testFolder/' + fileName)
+        print("API : stored " + fileName )
+        return fileName
+
+    def pullFromDB(fileName):
+        print("API : loading")
+        path = ('C:/Users/Demetre/Desktop/API test/testFolder/' + fileName)
+        image = cv2.imread(path)
+        print("API : loaded " + fileName)
+        return image
+
+
+
+
+if __name__ == '__main__':
+    app.run(debug=True)
