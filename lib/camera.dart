@@ -7,8 +7,12 @@ import 'package:flutter_tts/flutter_tts.dart';
 import 'package:gallery_saver/gallery_saver.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:http/http.dart' as http;
+import 'package:ollin/contacts.dart';
+import 'package:ollin/find_location.dart';
 
-// FlutterTts flutterTts = FlutterTts();
+import 'home1.dart';
+
+FlutterTts flutterTts = FlutterTts();
 
 // class cameraScreen extends StatefulWidget {
 //   @override
@@ -125,13 +129,13 @@ import 'package:http/http.dart' as http;
 //   }
 // }
 
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
-import 'package:image_picker/image_picker.dart';
-import 'package:ollin/contacts.dart';
-import 'package:ollin/find_location.dart';
+// import 'package:flutter/cupertino.dart';
+// import 'package:flutter/material.dart';
+// import 'package:image_picker/image_picker.dart';
+// import 'package:ollin/contacts.dart';
+// import 'package:ollin/find_location.dart';
 
-import 'home1.dart';
+// import 'home1.dart';
 
 // void main() => runApp(new cameraScreen());
 
@@ -181,11 +185,11 @@ class _cameraScreenState extends State<cameraScreen> {
         var responseString = await response.stream.bytesToString();
         print(response);
         print(responseString);
-        // Future _speak1() async {
-        //   await flutterTts.speak(responseString);
-        // }
+        Future _speak1() async {
+          await flutterTts.speak(responseString);
+        }
 
-        // _speak1();
+        _speak1();
 
         //  var responseString = String.fromCharCodes(responseString.toString());
 
