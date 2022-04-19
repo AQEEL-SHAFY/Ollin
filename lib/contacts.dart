@@ -127,6 +127,36 @@ class _ContactPageState extends State<ContactPage> {
                   fontFamily: "Raleway",
                 ),
               ),
+              const SizedBox(
+                height: 20,
+              ),
+              TextFormField(
+                keyboardType: TextInputType.number,
+                controller: _descriptionController,
+                decoration: InputDecoration(
+                  enabledBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.transparent),
+                    borderRadius: BorderRadius.circular(5.5),
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.transparent),
+                    borderRadius: BorderRadius.circular(5.5),
+                  ),
+                  prefixIcon: Icon(
+                    Icons.phone,
+                    color: Colors.blue,
+                  ),
+                  hintText: 'Contact Number',
+                  hintStyle: TextStyle(color: Colors.blue),
+                  filled: true,
+                  fillColor: Colors.blue[50],
+                ),
+                autofocus: true,
+                style: TextStyle(
+                  fontSize: 18.0,
+                  fontFamily: "Raleway",
+                ),
+              ),
             ],
           ),
         ));
