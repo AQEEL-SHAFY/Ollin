@@ -157,6 +157,57 @@ class _ContactPageState extends State<ContactPage> {
                   fontFamily: "Raleway",
                 ),
               ),
+              Padding(
+                padding: EdgeInsets.only(
+                  top: 10.0,
+                ),
+                child: Container(
+                  height: 60,
+                  width: 348,
+                  margin: EdgeInsets.only(
+                      top: 20.0, left: 0.0, right: 0.0, bottom: 20.0),
+                  child: ElevatedButton(
+                    child: Text(
+                      (id == null ? 'Save Contact' : 'Save Changes'),
+                      style: TextStyle(fontSize: 24.0),
+                    ),
+                    style: ButtonStyle(
+                      backgroundColor: MaterialStateProperty.all<Color>(
+                          Color(0xFF014268)),
+                      shape: MaterialStateProperty
+                          .all<RoundedRectangleBorder>(RoundedRectangleBorder(
+                        // borderRadius: BorderRadius.circular(25.0),
+                      )),
+                    ),
+                    onPressed: () async {
+                      // Save new journal
+                      if (id == null) {
+                        await _addItem();
+                      }
+
+                      if (id != null) {
+                        await _updateItem(id);
+                      }
+
+                      // Clear the text fields
+                      _titleController.text = '';
+                      _descriptionController.text = '';
+
+                      // Close the bottom sheet
+                      Navigator.of(context).pop();
+                      _speak();
+                    },
+
+                    // ignore: prefer_const_constructors
+                  ),
+                ),
+                // child: Row(
+                //   mainAxisAlignment: MainAxisAlignment.center,
+                //   children: <Widget>[
+                //
+                //   ],
+                // ),
+              ),
             ],
           ),
         ));
