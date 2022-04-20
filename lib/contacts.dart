@@ -1,6 +1,5 @@
 // main.dart
 import 'package:flutter/material.dart';
-import 'package:flutter_phone_direct_caller/flutter_phone_direct_caller.dart';
 import 'package:flutter_tts/flutter_tts.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -11,9 +10,9 @@ Future _speak() async {
   await flutterTts.speak('The Contact has been saved successfully ');
 }
 
-       Future _speak1() async {
-                                 await flutterTts.speak('The Contact has been deleted successfully');
-                        }
+Future _speak1() async {
+  await flutterTts.speak('The Contact has been deleted successfully');
+}
 
 Future _speak2() async {
   await flutterTts
@@ -38,11 +37,11 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return const MaterialApp(
 
         // Remove the debug banner
         debugShowCheckedModeBanner: false,
-        home: const ContactPage());
+        home: ContactPage());
   }
 }
 
@@ -86,131 +85,129 @@ class _ContactPageState extends State<ContactPage> {
           _journals.firstWhere((element) => element['id'] == id);
       _titleController.text = existingJournal['title'];
       _descriptionController.text = existingJournal['description'];
-
     }
 
     showDialog(
         context: context,
         builder: (context) => AlertDialog(
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(10.0),
-          ),
-          title: const Text(
-            "Add Contact",
-          ),
-          content: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: <Widget>[
-              TextFormField(
-                controller: _titleController,
-                decoration: InputDecoration(
-                  enabledBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.transparent),
-                    borderRadius: BorderRadius.circular(5.5),
-                  ),
-                  focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.transparent),
-                    borderRadius: BorderRadius.circular(5.5),
-                  ),
-                  prefixIcon: Icon(
-                    Icons.person,
-                    color: Colors.blue,
-                  ),
-                  hintText: 'Name',
-                  hintStyle: TextStyle(color: Colors.blue),
-                  filled: true,
-                  fillColor: Colors.blue[50],
-                ),
-                autofocus: true,
-                style: TextStyle(
-                  fontSize: 18.0,
-                  fontFamily: "Raleway",
-                ),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(10.0),
               ),
-              const SizedBox(
-                height: 20,
+              title: const Text(
+                "Add Contact",
               ),
-              TextFormField(
-                keyboardType: TextInputType.number,
-                controller: _descriptionController,
-                decoration: InputDecoration(
-                  enabledBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.transparent),
-                    borderRadius: BorderRadius.circular(5.5),
-                  ),
-                  focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.transparent),
-                    borderRadius: BorderRadius.circular(5.5),
-                  ),
-                  prefixIcon: Icon(
-                    Icons.phone,
-                    color: Colors.blue,
-                  ),
-                  hintText: 'Contact Number',
-                  hintStyle: TextStyle(color: Colors.blue),
-                  filled: true,
-                  fillColor: Colors.blue[50],
-                ),
-                autofocus: true,
-                style: TextStyle(
-                  fontSize: 18.0,
-                  fontFamily: "Raleway",
-                ),
-              ),
-              Padding(
-                padding: EdgeInsets.only(
-                  top: 10.0,
-                ),
-                child: Container(
-                  height: 60,
-                  width: 348,
-                  margin: EdgeInsets.only(
-                      top: 20.0, left: 0.0, right: 0.0, bottom: 20.0),
-                  child: ElevatedButton(
-                    child: Text(
-                      (id == null ? 'Save Contact' : 'Save Changes'),
-                      style: TextStyle(fontSize: 24.0),
+              content: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: <Widget>[
+                  TextFormField(
+                    controller: _titleController,
+                    decoration: InputDecoration(
+                      enabledBorder: OutlineInputBorder(
+                        borderSide: const BorderSide(color: Colors.transparent),
+                        borderRadius: BorderRadius.circular(5.5),
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                        borderSide: const BorderSide(color: Colors.transparent),
+                        borderRadius: BorderRadius.circular(5.5),
+                      ),
+                      prefixIcon: const Icon(
+                        Icons.person,
+                        color: Colors.blue,
+                      ),
+                      hintText: 'Name',
+                      hintStyle: const TextStyle(color: Colors.blue),
+                      filled: true,
+                      fillColor: Colors.blue[50],
                     ),
-                    style: ButtonStyle(
-                      backgroundColor: MaterialStateProperty.all<Color>(
-                          Color(0xFF014268)),
-                      shape: MaterialStateProperty
-                          .all<RoundedRectangleBorder>(RoundedRectangleBorder(
-                        // borderRadius: BorderRadius.circular(25.0),
-                      )),
+                    autofocus: true,
+                    style: const TextStyle(
+                      fontSize: 18.0,
+                      fontFamily: "Raleway",
                     ),
-                    onPressed: () async {
-                      // Save new journal
-                      if (id == null) {
-                        await _addItem();
-                      }
-
-                      if (id != null) {
-                        await _updateItem(id);
-                      }
-
-                      // Clear the text fields
-                      _titleController.text = '';
-                      _descriptionController.text = '';
-
-                      // Close the bottom sheet
-                      Navigator.of(context).pop();
-                      _speak();
-                    },
-
+                  ),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  TextFormField(
+                    keyboardType: TextInputType.number,
+                    controller: _descriptionController,
+                    decoration: InputDecoration(
+                      enabledBorder: OutlineInputBorder(
+                        borderSide: const BorderSide(color: Colors.transparent),
+                        borderRadius: BorderRadius.circular(5.5),
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                        borderSide: const BorderSide(color: Colors.transparent),
+                        borderRadius: BorderRadius.circular(5.5),
+                      ),
+                      // ignore: prefer_const_constructors
+                      prefixIcon: Icon(
+                        Icons.phone,
+                        color: Colors.blue,
+                      ),
+                      hintText: 'Contact Number',
+                      hintStyle: const TextStyle(color: Colors.blue),
+                      filled: true,
+                      fillColor: Colors.blue[50],
+                    ),
+                    autofocus: true,
                     // ignore: prefer_const_constructors
+                    style: TextStyle(
+                      fontSize: 18.0,
+                      fontFamily: "Raleway",
+                    ),
                   ),
-                ),
-                // child: Row(
-                //   mainAxisAlignment: MainAxisAlignment.center,
-                //   children: <Widget>[
-                //
-                //   ],
-                // ),
+                  Padding(
+                    // ignore: prefer_const_constructors
+                    padding: EdgeInsets.only(
+                      top: 10.0,
+                    ),
+                    child: Container(
+                      height: 60,
+                      width: 348,
+                      // ignore: prefer_const_constructors
+                      margin: EdgeInsets.only(
+                          top: 20.0, left: 0.0, right: 0.0, bottom: 20.0),
+                      child: ElevatedButton(
+                        child: Text(
+                          (id == null ? 'Save Contact' : 'Save Changes'),
+                          style: const TextStyle(fontSize: 24.0),
+                        ),
+                        style: ButtonStyle(
+                          backgroundColor: MaterialStateProperty.all<Color>(
+                              const Color(0xFF014268)),
+                          shape: MaterialStateProperty
+                              // ignore: prefer_const_constructors
+                              .all<RoundedRectangleBorder>(RoundedRectangleBorder(
+                                  // borderRadius: BorderRadius.circular(25.0),
+                                  )),
+                        ),
+                        onPressed: () async {
+                          // Save new journal
+                          if (id == null) {
+                            await _addItem();
+                          }
+
+                          if (id != null) {
+                            await _updateItem(id);
+                          }
+
+                          // Clear the text fields
+                          _titleController.text = '';
+                          _descriptionController.text = '';
+
+                          // Close the bottom sheet
+                          Navigator.of(context).pop();
+                          _speak();
+                        },
+
+                        // ignore: prefer_const_constructors
+                      ),
+                    ),
+                  ),
+                ],
               ),
-            ],
-          ),
-        ));
+            ));
   }
 
 // Insert a new contact to the database
@@ -247,12 +244,9 @@ class _ContactPageState extends State<ContactPage> {
           : ListView.builder(
               itemCount: _journals.length,
               itemBuilder: (context, index) => Card(
-                
                 color: const Color(0xFFFFFFFF),
                 margin: const EdgeInsets.all(15),
-                
                 child: ListTile(
-
                   title: Text(_journals[index]['title'].toUpperCase()),
                   subtitle: Text(_journals[index]['description']),
                   trailing: SizedBox(
@@ -268,7 +262,6 @@ class _ContactPageState extends State<ContactPage> {
                               _showForm(_journals[index]['id']);
                               _speak2();
                             }),
-                            
                         IconButton(
                             icon: const Icon(
                               Icons.delete,
@@ -276,7 +269,7 @@ class _ContactPageState extends State<ContactPage> {
                             ),
                             onPressed: () {
                               _deleteItem(_journals[index]['id']);
-                       
+
                               _speak1();
                             }),
                         IconButton(
@@ -296,12 +289,11 @@ class _ContactPageState extends State<ContactPage> {
               ),
             ),
       floatingActionButton: FloatingActionButton(
-         backgroundColor: Color(0xFF014268),
+          backgroundColor: const Color(0xFF014268),
           child: const Icon(Icons.add),
           onPressed: () {
             _showForm(null);
             _speak4();
-          
           }),
     );
   }
