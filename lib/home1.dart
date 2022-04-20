@@ -7,9 +7,13 @@ import 'package:ollin/contacts.dart';
 import 'package:ollin/find_location.dart';
 
 FlutterTts flutterTts = FlutterTts();
+
+
 Future _speak1() async {
   await flutterTts.speak('You have access the contacts');
 }
+
+
 
 //Common constants
 const containerCommonPadding = EdgeInsets.only(left: 20, right: 20);
@@ -31,12 +35,6 @@ class Home extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Future _speak() async {
-      await flutterTts.speak(
-          'Welcome to ollin, The indoor navigation for visual impared......');
-    }
-
-    _speak();
     return Scaffold(
       backgroundColor: Color(0xFFDEDCD2),
       body: LayoutBuilder(
@@ -64,7 +62,6 @@ Widget _screenLarger(BuildContext context) {
                 Container(
                   margin: containerMaxMargin,
                 ),
-
                 GestureDetector(
                   child: SizedBox(
                     height: logoMaxImageheight,
@@ -75,14 +72,14 @@ Widget _screenLarger(BuildContext context) {
                     ),
                   ),
                   onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => const FindLocation()),
-                    );
+                    Future _response() async {
+                      await flutterTts.speak(
+                          'Welcome to ollin. Navigate the app to use the features. Select Assist Me to help you with indoor navigation. And select location for your current location or access emergency contacts in case of an emergency.');
+                    }
+
+                    _response();
                   },
                 ),
-
                 SizedBox(height: 50),
                 SizedBox(
                   width: MediaQuery.of(context).size.width,
@@ -106,7 +103,7 @@ Widget _screenLarger(BuildContext context) {
                       Navigator.push(
                         context,
                         MaterialPageRoute(builder: (context) => cameraScreen()),
-                      );
+                      ); 
                     },
                   ),
                 ),
@@ -138,7 +135,6 @@ Widget _screenLarger(BuildContext context) {
                     },
                   ),
                 ),
-
                 SizedBox(height: 30),
                 SizedBox(
                   width: MediaQuery.of(context).size.width,
@@ -187,25 +183,23 @@ Widget _screenSmaller(BuildContext context) {
                 Container(
                   margin: containerMinMargin,
                 ),
-
                 GestureDetector(
-                  child: SizedBox(
-                    height: logoMinImageheight,
-                    width: logoMinImageWidth,
-                    child: Image.asset(
-                      'images/ollin_transparent.png',
-                      fit: BoxFit.scaleDown,
+                    child: SizedBox(
+                      height: logoMinImageheight,
+                      width: logoMinImageWidth,
+                      child: Image.asset(
+                        'images/ollin_transparent.png',
+                        fit: BoxFit.scaleDown,
+                      ),
                     ),
-                  ),
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => const FindLocation()),
-                    );
-                  },
-                ),
+                    onTap: () {
+                      Future _response() async {
+                        await flutterTts.speak(
+                            'Welcome to OLLIN. Navigate the app to use the features. Select Assist Me to help you with indoor navigation. And select location for your current location or access emergency contacts in case of an emergency.');
+                      }
 
+                      _response();
+                    }),
                 SizedBox(height: 30),
                 SizedBox(
                   width: MediaQuery.of(context).size.width,
@@ -261,7 +255,6 @@ Widget _screenSmaller(BuildContext context) {
                     },
                   ),
                 ),
-
                 SizedBox(height: 30),
                 SizedBox(
                   width: MediaQuery.of(context).size.width,
