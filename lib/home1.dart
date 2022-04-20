@@ -2,12 +2,9 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_tts/flutter_tts.dart';
-import 'package:ollin/assist_me.dart';
 import 'package:ollin/camera.dart';
 import 'package:ollin/contacts.dart';
-
 import 'package:ollin/find_location.dart';
-import 'package:path/path.dart';
 
 FlutterTts flutterTts = FlutterTts();
 Future _speak1() async {
@@ -61,7 +58,6 @@ Widget _screenLarger(BuildContext context) {
     body: SingleChildScrollView(
       child: Column(children: <Widget>[
         Container(
-            //  Padding(padding: EdgeInsets.only(left: 20,right: 20)),
             padding: containerCommonPadding,
             child: Column(
               children: [
@@ -70,7 +66,7 @@ Widget _screenLarger(BuildContext context) {
                 ),
 
                 GestureDetector(
-                  child: Container(
+                  child: SizedBox(
                     height: logoMaxImageheight,
                     width: logoMaxImageWidth,
                     child: Image.asset(
@@ -85,38 +81,9 @@ Widget _screenLarger(BuildContext context) {
                           builder: (context) => const FindLocation()),
                     );
                   },
-                  //  margin: const EdgeInsets.only(top: 90.0),
-
-                  //   child: Center(
-                  //     child: Image.asset('images/ollin_transparent.png'),
-
-                  //   ),
                 ),
 
                 SizedBox(height: 50),
-                //         InkWell(
-                // onTap: () {
-
-                // }, // Handle your callback.
-                // splashColor: Color(0xFFDEDCD2),
-
-//   child: Ink(
-
-//     height: 200,
-//     width: 200,
-//     decoration: BoxDecoration(
-//       image: DecorationImage(
-//         image: AssetImage('images/ollin_transparent.png'),
-//         fit: BoxFit.cover,
-//       ),
-//     ),
-//   ),
-// ),
-
-                // height: 111,
-                // width: 448,
-                // margin: EdgeInsets.only(
-                //     top: 20.0, left: 30.0, right: 30.0, bottom: 20.0),
                 SizedBox(
                   width: MediaQuery.of(context).size.width,
                   child: ElevatedButton(
@@ -144,11 +111,6 @@ Widget _screenLarger(BuildContext context) {
                   ),
                 ),
                 SizedBox(height: 30),
-                // height: 111,
-                // width: 448,
-                // margin: EdgeInsets.only(
-                //     top: 20.0, left: 30.0, right: 30.0, bottom: 20.0),
-
                 SizedBox(
                   width: MediaQuery.of(context).size.width,
                   child: ElevatedButton(
@@ -178,10 +140,6 @@ Widget _screenLarger(BuildContext context) {
                 ),
 
                 SizedBox(height: 30),
-                // height: 111,
-                // width: 448,
-                // margin: EdgeInsets.only(
-                //     top: 20.0, left: 30.0, right: 30.0, bottom: 20.0),
                 SizedBox(
                   width: MediaQuery.of(context).size.width,
                   child: ElevatedButton(
@@ -223,7 +181,6 @@ Widget _screenSmaller(BuildContext context) {
     body: SingleChildScrollView(
       child: Column(children: <Widget>[
         Container(
-            //  Padding(padding: EdgeInsets.only(left: 20,right: 20)),
             padding: containerCommonPadding,
             child: Column(
               children: [
@@ -232,7 +189,7 @@ Widget _screenSmaller(BuildContext context) {
                 ),
 
                 GestureDetector(
-                  child: Container(
+                  child: SizedBox(
                     height: logoMinImageheight,
                     width: logoMinImageWidth,
                     child: Image.asset(
@@ -247,38 +204,9 @@ Widget _screenSmaller(BuildContext context) {
                           builder: (context) => const FindLocation()),
                     );
                   },
-                  //  margin: const EdgeInsets.only(top: 90.0),
-
-                  //   child: Center(
-                  //     child: Image.asset('images/ollin_transparent.png'),
-
-                  //   ),
                 ),
 
                 SizedBox(height: 30),
-                //         InkWell(
-                // onTap: () {
-
-                // }, // Handle your callback.
-                // splashColor: Color(0xFFDEDCD2),
-
-//   child: Ink(
-
-//     height: 200,
-//     width: 200,
-//     decoration: BoxDecoration(
-//       image: DecorationImage(
-//         image: AssetImage('images/ollin_transparent.png'),
-//         fit: BoxFit.cover,
-//       ),
-//     ),
-//   ),
-// ),
-
-                // height: 111,
-                // width: 448,
-                // margin: EdgeInsets.only(
-                //     top: 20.0, left: 30.0, right: 30.0, bottom: 20.0),
                 SizedBox(
                   width: MediaQuery.of(context).size.width,
                   child: ElevatedButton(
@@ -306,11 +234,6 @@ Widget _screenSmaller(BuildContext context) {
                   ),
                 ),
                 SizedBox(height: 30),
-                // height: 111,
-                // width: 448,
-                // margin: EdgeInsets.only(
-                //     top: 20.0, left: 30.0, right: 30.0, bottom: 20.0),
-
                 SizedBox(
                   width: MediaQuery.of(context).size.width,
                   child: ElevatedButton(
@@ -340,10 +263,6 @@ Widget _screenSmaller(BuildContext context) {
                 ),
 
                 SizedBox(height: 30),
-                // height: 111,
-                // width: 448,
-                // margin: EdgeInsets.only(
-                //     top: 20.0, left: 30.0, right: 30.0, bottom: 20.0),
                 SizedBox(
                   width: MediaQuery.of(context).size.width,
                   child: ElevatedButton(

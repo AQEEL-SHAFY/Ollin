@@ -4,8 +4,6 @@ import 'package:flutter/material.dart';
 
 import 'package:ollin/home1.dart';
 
-import 'package:provider/provider.dart';
-
 void main() {
   runApp(MyApp());
 }
