@@ -6,6 +6,7 @@ import 'package:url_launcher/url_launcher.dart';
 import 'database.dart';
 
 FlutterTts flutterTts = FlutterTts();
+
 Future _speak() async {
   await flutterTts.speak('The Contact has been saved successfully ');
 }
@@ -57,6 +58,7 @@ class _ContactPageState extends State<ContactPage> {
   List<Map<String, dynamic>> _journals = [];
 
   bool _isLoading = true;
+
   // This function is used to fetch all data from the database
   void _refreshJournals() async {
     final data = await SQLHelper.getItems();
@@ -241,52 +243,130 @@ class _ContactPageState extends State<ContactPage> {
           ? const Center(
               child: CircularProgressIndicator(),
             )
-          : ListView.builder(
-              itemCount: _journals.length,
-              itemBuilder: (context, index) => Card(
-                color: const Color(0xFFFFFFFF),
-                margin: const EdgeInsets.all(15),
-                child: ListTile(
-                  title: Text(_journals[index]['title'].toUpperCase()),
-                  subtitle: Text(_journals[index]['description']),
-                  trailing: SizedBox(
-                    width: 145,
-                    child: Row(
-                      children: [
-                        IconButton(
-                            icon: const Icon(
-                              Icons.edit,
-                              color: Colors.black,
-                            ),
-                            onPressed: () {
-                              _showForm(_journals[index]['id']);
-                              _speak2();
-                            }),
-                        IconButton(
-                            icon: const Icon(
-                              Icons.delete,
-                              color: Colors.red,
-                            ),
-                            onPressed: () {
-                              _deleteItem(_journals[index]['id']);
-
-                              _speak1();
-                            }),
-                        IconButton(
-                            icon: const Icon(
-                              Icons.call,
-                              color: Colors.green,
-                            ),
-                            onPressed: () {
-                              launch(
-                                  ('tel:${_journals[index]['description']}'));
-                              _speak3();
-                            }),
-                      ],
+          : ListView(
+              children: [
+                Card(
+                  color: const Color(0xFFFFFFFF),
+                  margin: const EdgeInsets.all(15),
+                  child: ListTile(
+                    title: Text("Police"),
+                    subtitle: Text("119"),
+                    trailing: SizedBox(
+                      width: 145,
+                      child: Row(
+                        children: [
+                          IconButton(
+                              icon: const Icon(
+                                Icons.edit,
+                                color: Colors.black,
+                              ),
+                              onPressed: () {}),
+                          IconButton(
+                              icon: const Icon(
+                                Icons.delete,
+                                color: Colors.red,
+                              ),
+                              onPressed: () {}),
+                          IconButton(
+                              icon: const Icon(
+                                Icons.call,
+                                color: Colors.green,
+                              ),
+                              onPressed: () {
+                                launch(("119"));
+                                _speak3();
+                              }),
+                        ],
+                      ),
                     ),
                   ),
                 ),
-              ),
+                Card(
+                  color: const Color(0xFFFFFFFF),
+                  margin: const EdgeInsets.all(15),
+                  child: ListTile(
+                    title: Text("Ambulance Service"),
+                    subtitle: Text("1990"),
+                    trailing: SizedBox(
+                      width: 145,
+                      child: Row(
+                        children: [
+                          IconButton(
+                              icon: const Icon(
+                                Icons.edit,
+                                color: Colors.black,
+                              ),
+                              onPressed: () {}),
+                          IconButton(
+                              icon: const Icon(
+                                Icons.delete,
+                                color: Colors.red,
+                              ),
+                              onPressed: () {}),
+                          IconButton(
+                              icon: const Icon(
+                                Icons.call,
+                                color: Colors.green,
+                              ),
+                              onPressed: () {
+                                launch(("1990"));
+                                _speak3();
+                              }),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+                ListView.builder(
+                  physics: NeverScrollableScrollPhysics(),
+                  shrinkWrap: true,
+                  itemCount: _journals.length,
+                  itemBuilder: (context, index) => Card(
+                    color: const Color(0xFFFFFFFF),
+                    margin: const EdgeInsets.all(15),
+                    child: ListTile(
+                      title: Text(_journals[index]['title'].toUpperCase()),
+                      subtitle: Text(_journals[index]['description']),
+                      trailing: SizedBox(
+                        width: 145,
+                        child: Row(
+                          children: [
+                            IconButton(
+                                icon: const Icon(
+                                  Icons.edit,
+                                  color: Colors.black,
+                                ),
+                                onPressed: () {
+                                  _showForm(_journals[index]['id']);
+                                  _speak2();
+                                }),
+                            IconButton(
+                                icon: const Icon(
+                                  Icons.delete,
+                                  color: Colors.red,
+                                ),
+                                onPressed: () {
+                                  _deleteItem(_journals[index]['id']);
+
+                                  _speak1();
+                                }),
+                            IconButton(
+                                icon: const Icon(
+                                  Icons.call,
+                                  color: Colors.green,
+                                ),
+                                onPressed: () {
+                                  launch(
+                                      ('tel:${_journals[index]['description']}'));
+                                  _speak3();
+                                }),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+              ],
             ),
       floatingActionButton: FloatingActionButton(
           backgroundColor: const Color(0xFF014268),
