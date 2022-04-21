@@ -273,7 +273,7 @@ class _ContactPageState extends State<ContactPage> {
                                 color: Colors.green,
                               ),
                               onPressed: () {
-                                launch(("119"));
+                                launch("tel:119");
                                 _speak3();
                               }),
                         ],
@@ -309,7 +309,43 @@ class _ContactPageState extends State<ContactPage> {
                                 color: Colors.green,
                               ),
                               onPressed: () {
-                                launch(("1990"));
+                                launch("tel:1990");
+                                _speak3();
+                              }),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+                Card(
+                  color: const Color(0xFFFFFFFF),
+                  margin: const EdgeInsets.all(15),
+                  child: ListTile(
+                    title: Text("Sri Lanka Council for the Blind"),
+                    subtitle: Text("0112329564"),
+                    trailing: SizedBox(
+                      width: 145,
+                      child: Row(
+                        children: [
+                          IconButton(
+                              icon: const Icon(
+                                Icons.edit,
+                                color: Colors.black,
+                              ),
+                              onPressed: () {}),
+                          IconButton(
+                              icon: const Icon(
+                                Icons.delete,
+                                color: Colors.red,
+                              ),
+                              onPressed: () {}),
+                          IconButton(
+                              icon: const Icon(
+                                Icons.call,
+                                color: Colors.green,
+                              ),
+                              onPressed: () {
+                                launch("tel:0112329564");
                                 _speak3();
                               }),
                         ],
