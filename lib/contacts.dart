@@ -258,13 +258,13 @@ class _ContactPageState extends State<ContactPage> {
                           IconButton(
                               icon: const Icon(
                                 Icons.edit,
-                                color: Colors.black,
+                                color: Color(0xFFFFFFFF),
                               ),
                               onPressed: () {}),
                           IconButton(
                               icon: const Icon(
                                 Icons.delete,
-                                color: Colors.red,
+                                color: Color(0xFFFFFFFF),
                               ),
                               onPressed: () {}),
                           IconButton(
@@ -294,13 +294,13 @@ class _ContactPageState extends State<ContactPage> {
                           IconButton(
                               icon: const Icon(
                                 Icons.edit,
-                                color: Colors.black,
+                                color: Color(0xFFFFFFFF),
                               ),
                               onPressed: () {}),
                           IconButton(
                               icon: const Icon(
                                 Icons.delete,
-                                color: Colors.red,
+                                color: Color(0xFFFFFFFF),
                               ),
                               onPressed: () {}),
                           IconButton(
@@ -330,13 +330,13 @@ class _ContactPageState extends State<ContactPage> {
                           IconButton(
                               icon: const Icon(
                                 Icons.edit,
-                                color: Colors.black,
+                                color: Color(0xFFFFFFFF),
                               ),
                               onPressed: () {}),
                           IconButton(
                               icon: const Icon(
                                 Icons.delete,
-                                color: Colors.red,
+                                color: Color(0xFFFFFFFF),
                               ),
                               onPressed: () {}),
                           IconButton(
