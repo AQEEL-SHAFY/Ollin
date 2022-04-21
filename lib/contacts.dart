@@ -249,8 +249,8 @@ class _ContactPageState extends State<ContactPage> {
                   color: const Color(0xFFFFFFFF),
                   margin: const EdgeInsets.all(15),
                   child: ListTile(
-                    title: Text("Police"),
-                    subtitle: Text("119"),
+                    title: const Text("Police"),
+                    subtitle: const Text("119"),
                     trailing: SizedBox(
                       width: 145,
                       child: Row(
@@ -285,8 +285,8 @@ class _ContactPageState extends State<ContactPage> {
                   color: const Color(0xFFFFFFFF),
                   margin: const EdgeInsets.all(15),
                   child: ListTile(
-                    title: Text("Ambulance Service"),
-                    subtitle: Text("1990"),
+                    title: const Text("Ambulance Service"),
+                    subtitle: const Text("1990"),
                     trailing: SizedBox(
                       width: 145,
                       child: Row(
@@ -321,8 +321,8 @@ class _ContactPageState extends State<ContactPage> {
                   color: const Color(0xFFFFFFFF),
                   margin: const EdgeInsets.all(15),
                   child: ListTile(
-                    title: Text("Sri Lanka Council for the Blind"),
-                    subtitle: Text("0112329564"),
+                    title: const Text("Sri Lanka Council for the Blind"),
+                    subtitle: const Text("0112329564"),
                     trailing: SizedBox(
                       width: 145,
                       child: Row(
@@ -354,7 +354,7 @@ class _ContactPageState extends State<ContactPage> {
                   ),
                 ),
                 ListView.builder(
-                  physics: NeverScrollableScrollPhysics(),
+                  physics: const NeverScrollableScrollPhysics(),
                   shrinkWrap: true,
                   itemCount: _journals.length,
                   itemBuilder: (context, index) => Card(
