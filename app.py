@@ -9,7 +9,7 @@ app = Flask(__name__)
 
 @app.route("/")
 def test():
-    return jsonify({"about": "Ollin Working"}), 201
+    return jsonify({"about": "Ollin 0.2 Working"}), 201
 
 
 @app.route("/ollin", methods=["POST"])
@@ -33,20 +33,27 @@ def runOllin():
             right_data = OllinRuntimeMethods.ollin_object_detection.string_builder(right_obj_list, False, True)
             # Identify obstacles in path
             overall_obj_list = OllinRuntimeMethods.ollin_object_detection.scanner(img, False, False)
-            blocked_flag = OllinRuntimeMethods.ollin_object_detection.path_blocked(left_obj_list, right_obj_list,overall_obj_list)
+            blocked_flag = OllinRuntimeMethods.ollin_object_detection.path_blocked(left_obj_list, right_obj_list,
+                                                                                   overall_obj_list)
         except:
             abort(400)
 
         if blocked_flag:
-            blocked_alert = "detected obstacle in your path"
+            blocked_alert = "detected obstacle in your path."
         else:
             blocked_alert = ""
-        return jsonify({
-            "LeftData": left_data,
-            "RightData": right_data,
-            "BlockedPath": blocked_alert
-        }), 201
+
+        returnString = blocked_alert + " " + left_data + " " + right_data
+
+        return jsonify(returnString), 201
+
+        # Removed JSON since the frontend appears to only be receiving strings...
+        # return jsonify({
+        #     "LeftData": left_data,
+        #     "RightData": right_data,
+        #     "BlockedPath": blocked_alert
+        # }), 201
 
 
 if __name__ == '__main__':
-    app.run(debug=True,port=8080,host='0.0.0.0')
+    app.run(debug=True, port=8080, host='0.0.0.0')
