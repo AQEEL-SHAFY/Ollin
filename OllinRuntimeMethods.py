@@ -37,10 +37,13 @@ class ollin_object_detection:
                 if obj == object_list[x]:
                     object_count_list[x] += 1
 
-        y = 0
-        while y < len(object_count_list):
-            temp_index = y
-            temp_count = object_count_list[y]
+        # for v in range(len(object_list)):
+        #     print(object_list[v] + " : " + str(object_count_list[v]))
+
+
+        for n in range(len(object_count_list)):
+            temp_count = object_count_list[n]
+            temp_index = n
             if (temp_count > 0):
                 if (temp_count == 1):
                     temp_string = ("one " + object_list[temp_index])
@@ -53,28 +56,35 @@ class ollin_object_detection:
                     return_list.append(temp_string)
                 else:
                     print("unexpected result")
-            y = y + 1
+
+
+        # for p in range(len(return_list)):
+        #     print(return_list[p])
 
         print("STRING BUILDER : objects counted...")
+
         if len(return_list) == 0:
-            return "Objects not detected on your " + side
+            return "Objects not detected on your " + side + "."
         elif len(return_list) == 1:
             return "On your " + side + comma + return_list[0] + " detected."
         elif len(return_list) == 2:
             return "On your " + side + comma + return_list[0] + " and " + return_list[1] + " detected."
         elif len(return_list) > 2:
-            return_string = "On your " + side + comma
+            return_string = "On your " + side
             z = 0
-            end_point = len(return_string) - 2
-            last_index = len(return_string) - 1
+            end_point = len(return_list) - 1
             while z < len(return_list):
                 if z == end_point:
-                    return_string = return_string + " and " + return_list[last_index] + " detected."
+                    return_string = return_string + " and " + return_list[end_point] + " detected."
                     break
-            return_string = return_string + comma + return_list[z]
-            z = z + 1
+                return_string = return_string + comma + return_list[z]
+                z = z + 1
+
         print("STRING BUILDER : returned string = " + return_string)
         return return_string
+
+
+
 
     def path_blocked(left, right, overall):
 
@@ -158,29 +168,29 @@ class ollin_object_detection:
             return obstacleList
 
 
-class API_tools:
-
-    def getFileName(image):
-        print("API : getting filename")
-        fileName = werkzeug.utils.secure_filename(image.filename)
-        print("API : filename : " + fileName)
-        return fileName
-
-    def pullFromDB(fileName):
-        print("API : loading")
-        path = ('testFolder/' + fileName)
-        image = cv2.imread(path)
-        print("API : loaded " + fileName)
-        return image
-
-    def debugImages(image):
-        print("API : placing image in debug folder")
-        file_name = werkzeug.utils.secure_filename(image.filename)
-        image.save('debug/' + file_name)
-        print("API : image placed")
-
-    def deleteImage(file_name):
-        print("API : clearing image from cache")
-        path = ('testFolder/' + file_name)
-        os.remove(path)
-        print("API : cleared image")
+# class API_tools:
+# 
+#     def getFileName(image):
+#         print("API : getting filename")
+#         fileName = werkzeug.utils.secure_filename(image.filename)
+#         print("API : filename : " + fileName)
+#         return fileName
+# 
+#     def pullFromDB(fileName):
+#         print("API : loading")
+#         path = ('testFolder/' + fileName)
+#         image = cv2.imread(path)
+#         print("API : loaded " + fileName)
+#         return image
+# 
+#     def debugImages(image):
+#         print("API : placing image in debug folder")
+#         file_name = werkzeug.utils.secure_filename(image.filename)
+#         image.save('debug/' + file_name)
+#         print("API : image placed")
+# 
+#     def deleteImage(file_name):
+#         print("API : clearing image from cache")
+#         path = ('testFolder/' + file_name)
+#         os.remove(path)
+#         print("API : cleared image")
