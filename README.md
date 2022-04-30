@@ -9,7 +9,7 @@
 - Compatible with Android 8 and upwards with Text to Speech compatibility for the best experience and for non bias accessibility
 
 ## Demo 
-https://user-images.githubusercontent.com/1V8-m6wKAcdz0OlLSCf5d8thePUJFjKvC
+[link](http://github.com) 
 
 ## Our Team
 - Aqeel Shafy
