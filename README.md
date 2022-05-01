@@ -8,8 +8,8 @@
 
 - Compatible with Android 8 and upwards with Text to Speech compatibility for the best experience and for non bias accessibility
 
-## Demo 
-[link](http://github.com) 
+## Demo Video 
+https://user-images.githubusercontent.com/86479468/166142118-a8d1ca9c-75f7-49ab-8d5e-9350949dc4f5.mp4
 
 ## Our Team
 - Aqeel Shafy
@@ -19,3 +19,11 @@
 - Demetre De Alwis 
 
 "May OLLIN show you around with an ALL IN solution made for you"
+
+
+
+
+
+
+
+
